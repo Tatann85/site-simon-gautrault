@@ -14,7 +14,7 @@
 <div class="planche">
 
 <header class="entete">
-  <a class="marque" href="#haut"><strong>CM3V</strong><span>Simon Gautrault</span></a>
+  <a class="marque" href="#haut"><img src="logo-cm3v.jpg" alt="CM3V, Conception Mécanique des 3 Vallées" width="82" height="56"><span>Simon Gautrault</span></a>
   <nav aria-label="Sections du site">
     <a href="#savoir-faire">Savoir-faire</a>
     <a href="#parcours">Parcours</a>
@@ -27,7 +27,10 @@
 <section class="hero">
   <div>
     <h1>Études CAO et expertise technique pour l'industrie métallurgique</h1>
-    <p class="chapo">Simon Gautrault est technicien indépendant en étude CAO depuis 2022, après près de dix ans en bureau d'études comme dessinateur-projeteur puis chef de projet. Il travaille sous SolidWorks, Inventor et PTC Creo.</p>
+    <div class="presentation">
+      <img src="simon-gautrault.jpg" alt="Portrait de Simon Gautrault" width="112" height="112">
+      <p class="chapo">Simon Gautrault est technicien indépendant en étude CAO depuis 2022, après près de dix ans en bureau d'études comme dessinateur-projeteur puis chef de projet. Il travaille sous SolidWorks, Inventor et PTC Creo.</p>
+    </div>
     <p class="actions"><a class="bouton plein" href="#contact">Décrire votre besoin</a><a class="lien" href="#parcours">Voir le parcours</a></p>
   </div>
   <figure class="dessin">
@@ -115,16 +118,16 @@
   <div class="contact">
     <div>
       <p>Décrivez votre besoin en quelques lignes : la pièce ou la machine concernée, le logiciel utilisé, l'échéance.</p>
-      <p>CM3V est basée à Saint-Crespin-sur-Moine (49), en Pays de la Loire.</p>
+      <p>CM3V (Conception Mécanique des 3 Vallées) est basée à Saint-Crespin-sur-Moine (49), en Pays de la Loire.</p>
       <p><a class="lien" href="https://www.linkedin.com/in/simon-gautrault-682b04257" rel="noopener">Profil LinkedIn de Simon Gautrault</a></p>
     </div>
-    <form id="form-contact" novalidate>
+    <form id="form-contact">
       <label>Nom<input type="text" name="nom" autocomplete="name" required></label>
       <label>Société<input type="text" name="societe" autocomplete="organization"></label>
       <label class="large">Adresse e-mail<input type="email" name="email" autocomplete="email" required></label>
       <label class="large">Votre besoin<textarea name="message" rows="6" required></textarea></label>
-      <button class="bouton plein" type="submit">Envoyer le message</button>
-      <p id="retour" class="retour" role="status" tabindex="-1" hidden>Préversion : l'envoi n'est pas encore activé. Votre message n'a pas été transmis.</p>
+      <button class="bouton plein" type="submit">Préparer l'e-mail</button>
+      <p id="retour" class="retour" role="status" tabindex="-1" hidden></p>
     </form>
   </div>
 </section>
@@ -135,8 +138,9 @@
   <div class="cartouche">
     <div class="titre"><small>Titre</small><b>Études CAO et expertise technique</b></div>
     <div><small>Établi par</small><b>Simon Gautrault</b></div>
-    <div><small>Société</small><b>CM3V</b></div>
     <div><small>Lieu</small><b>Saint-Crespin-sur-Moine (49)</b></div>
+    <div class="logo"><img src="logo-cm3v.jpg" alt="Logo CM3V" width="123" height="84"></div>
+    <div><small>Société</small><b>CM3V</b></div>
     <div><small>Indice</small><b>Préversion, 11/10/2026</b></div>
   </div>
   <div class="pied"><span>Site sans cookie ni mesure d'audience.</span><a href="mentions-legales.html">Mentions légales</a></div>
@@ -144,12 +148,28 @@
 
 </div>
 <script>
-document.getElementById('form-contact').addEventListener('submit', function (e) {
-  e.preventDefault();
+// Le formulaire n'envoie rien lui-meme : il ouvre la messagerie du visiteur
+// avec un e-mail pret a partir. Aucun service tiers, aucune donnee conservee.
+(function () {
+  var adresse = ['simon.gautrault', 'cm3v.com'].join('@');
+  var form = document.getElementById('form-contact');
   var retour = document.getElementById('retour');
-  retour.hidden = false;
-  retour.focus();
-});
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var societe = d.get('societe');
+    var sujet = 'Demande depuis le site CM3V : ' + d.get('nom') + (societe ? ' (' + societe + ')' : '');
+    var corps = d.get('message') + '\n\n' + d.get('nom') + (societe ? '\n' + societe : '') + '\n' + d.get('email');
+    window.location.href = 'mailto:' + adresse + '?subject=' + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps);
+    var lien = document.createElement('a');
+    lien.href = 'mailto:' + adresse;
+    lien.textContent = adresse;
+    retour.textContent = "Votre messagerie s'ouvre avec l'e-mail prêt à envoyer. Si rien ne s'ouvre, écrivez directement à ";
+    retour.append(lien, '.');
+    retour.hidden = false;
+    retour.focus();
+  });
+})();
 </script>
 </body>
 </html>
