@@ -1,0 +1,126 @@
+/* Site de Simon Gautrault (CM3V). Une seule feuille de style, aucune dependance externe. */
+:root{
+  --tole:#e9eceb;      /* fond : tole brossee */
+  --feuille:#f7f8f7;   /* la planche de dessin */
+  --encre:#17202b;     /* traits forts et texte */
+  --acier:#5b6975;     /* texte secondaire, traits fins */
+  --trait:#b9c2c7;     /* filets de separation */
+  --bleu:#1b3fa0;      /* bleu de tracage : cotes et actions */
+  --din:"Bahnschrift","DIN Alternate","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
+  --texte:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--tole);color:var(--encre);font:17px/1.6 var(--texte)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--bleu);outline-offset:3px}
+
+.preversion{margin:0;padding:6px 16px;background:var(--encre);color:var(--feuille);font-size:13.5px;text-align:center}
+.planche{max-width:1180px;margin:18px auto;background:var(--feuille);border:1.5px solid var(--encre)}
+
+.entete{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 28px;border-bottom:1px solid var(--trait)}
+.marque{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.marque strong{font:600 26px/1 var(--din);letter-spacing:.5px}
+.marque span{color:var(--acier);font-size:15px}
+.entete nav{display:flex;align-items:center;gap:22px;font-size:15.5px}
+.entete nav a{text-decoration:none}
+.entete nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.bouton{display:inline-block;border:1.5px solid var(--encre);padding:7px 14px;background:transparent;color:var(--encre);text-decoration:none;font-weight:600}
+.entete nav a.bouton:hover,.bouton:hover{background:var(--encre);color:var(--feuille);text-decoration:none}
+.bouton.plein{background:var(--bleu);border-color:var(--bleu);color:#fff;padding:12px 20px}
+.bouton.plein:hover{background:var(--encre);border-color:var(--encre)}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 28px 48px}
+h1{font:600 clamp(2.3rem,4.6vw,3.9rem)/1.04 var(--din);font-stretch:85%;letter-spacing:-.3px;margin:0 0 22px;text-wrap:balance}
+.chapo{font-size:1.12rem;max-width:34em;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin:0}
+.lien{text-underline-offset:4px}
+.dessin{margin:0}
+.dessin svg{display:block;width:100%;height:auto}
+.dessin figcaption{color:var(--acier);font-size:13.5px;margin-top:6px}
+
+/* Le dessin : traits vus, axes, hachures, cotes */
+.vu circle,.vu path{fill:none;stroke:var(--encre);stroke-width:1.7}
+.vu .coupe{fill:url(#hach)}
+.axes line,.axes circle{fill:none;stroke:var(--acier);stroke-width:.8;stroke-dasharray:14 3 2 3}
+.fin{stroke:var(--acier);stroke-width:.7}
+.cotes line,.cotes path{fill:none;stroke:var(--bleu);stroke-width:.9}
+.cotes text{fill:var(--bleu);font:500 13px var(--din)}
+.pointe{fill:var(--bleu)}
+.trace{stroke-dasharray:1;stroke-dashoffset:1;animation:tracer 1.6s ease-out forwards}
+.vu .coupe{animation:tracer 1.6s ease-out forwards,remplir .6s 1.3s both}
+.axes{animation:apparaitre .5s .1s both}
+.cotes{animation:apparaitre .6s 1.5s both}
+@keyframes tracer{to{stroke-dashoffset:0}}
+@keyframes remplir{from{fill-opacity:0}to{fill-opacity:1}}
+@keyframes apparaitre{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .trace,.vu .coupe,.axes,.cotes{animation:none}
+  .trace{stroke-dasharray:none;stroke-dashoffset:0}
+}
+
+.bloc{padding:48px 28px;border-top:1px solid var(--trait)}
+h2{font:600 2rem/1.1 var(--din);font-stretch:88%;margin:0 0 26px}
+h3{font:600 1.22rem/1.2 var(--din);margin:0 0 8px}
+.savoir{display:grid;grid-template-columns:repeat(4,1fr)}
+.savoir>div{padding:0 22px;border-left:1px solid var(--trait)}
+.savoir>div:first-child{padding-left:0;border-left:0}
+.savoir p{margin:0;font-size:.98rem}
+.outils{margin:30px 0 0;padding-top:16px;border-top:1px solid var(--trait)}
+
+.nomenclature{width:100%;border-collapse:collapse;font-size:.96rem}
+.nomenclature th,.nomenclature td{border:1px solid var(--encre);padding:9px 12px;text-align:left;vertical-align:top}
+.nomenclature th{font:600 .95rem/1.2 var(--din);background:var(--tole)}
+.nomenclature td:first-child{font:600 1.05rem/1.4 var(--din);text-align:center;width:3.4em}
+.nomenclature td:nth-child(2){white-space:nowrap}
+.nomenclature td span{display:block;color:var(--acier)}
+.formation{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px}
+.formation li{border-top:1.5px solid var(--encre);padding-top:10px}
+.formation b{display:block;font:600 1.15rem/1.2 var(--din)}
+.formation span{display:block;color:var(--acier);font-size:.95rem}
+.sous-titre{margin-top:40px}
+
+.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
+.contact p{margin:0 0 14px;max-width:30em}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-content:start}
+.contact label{display:block;font-weight:600;font-size:.95rem}
+.contact input,.contact textarea{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1.5px solid var(--encre);border-radius:0;background:#fff;color:inherit;font:inherit;font-weight:400}
+.contact .large{grid-column:1/-1}
+.contact button{font:inherit;font-weight:600;cursor:pointer;justify-self:start}
+.retour{grid-column:1/-1;margin:0;padding:10px 12px;border-left:4px solid var(--bleu);background:var(--tole)}
+.retour[hidden]{display:none}
+
+.cartouche{display:grid;grid-template-columns:2fr 1fr 1fr;border-top:1.5px solid var(--encre)}
+.cartouche div{padding:10px 14px;border-right:1px solid var(--encre);border-bottom:1px solid var(--encre)}
+.cartouche div:nth-child(3),.cartouche div:nth-child(5){border-right:0}
+.cartouche small{display:block;color:var(--acier);font-size:12.5px}
+.cartouche b{font:600 1.05rem/1.3 var(--din)}
+.cartouche .titre{grid-row:span 2}
+.cartouche .titre b{font-size:1.5rem}
+.pied{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding:10px 14px;font-size:13.5px;color:var(--acier)}
+
+.texte{max-width:46em}
+.texte h2{margin-top:34px;font-size:1.5rem;margin-bottom:10px}
+.texte .attente{border-left:4px solid var(--bleu);background:var(--tole);padding:10px 12px}
+
+@media (max-width:860px){
+  .planche{margin:0;border-width:0 0 1.5px}
+  .entete{padding:12px 18px}
+  .entete nav a:not(.bouton){display:none}
+  .hero{grid-template-columns:1fr;padding:36px 18px 30px}
+  .bloc{padding:36px 18px}
+  .savoir{grid-template-columns:1fr}
+  .savoir>div{padding:14px 0;border-left:0;border-top:1px solid var(--trait)}
+  .savoir>div:first-child{border-top:0;padding-top:0}
+  .formation{grid-template-columns:1fr;gap:16px}
+  .contact{grid-template-columns:1fr;gap:24px}
+  .contact form{grid-template-columns:1fr}
+  .cartouche{grid-template-columns:1fr}
+  .cartouche div{border-right:0}
+  .nomenclature thead{position:absolute;left:-9999px}
+  .nomenclature tr{display:block;border:1px solid var(--encre);margin-bottom:10px;padding:6px 0}
+  .nomenclature td{display:block;border:0;padding:3px 12px;width:auto}
+  .nomenclature td:first-child{display:none}
+  .nomenclature td:nth-child(2){font:600 1.1rem/1.4 var(--din)}
+}

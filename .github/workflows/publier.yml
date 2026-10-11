@@ -1,0 +1,41 @@
+name: Publication
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+      # Liste explicite, jamais de joker : seuls ces fichiers partent en ligne.
+      # Si l'un d'eux manque, la copie echoue et rien n'est publie.
+      - name: Preparer le site
+        run: |
+          mkdir -p _site
+          cp index.html mentions-legales.html style.css favicon.svg robots.txt _site/
+      - name: Configurer Pages
+        uses: actions/configure-pages@v5
+      - name: Uploader le site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deployer sur Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
