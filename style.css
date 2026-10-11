@@ -44,7 +44,18 @@ h1{font:600 clamp(2.3rem,4.6vw,3.9rem)/1.04 var(--din);font-stretch:85%;letter-s
 .dessin figcaption{color:var(--acier);font-size:13.5px;margin-top:6px}
 
 /* Le dessin : traits vus, axes, hachures, cotes */
-.vu circle,.vu path{fill:none;stroke:var(--encre);stroke-width:1.7}
+.vu circle,.vu path{fill:none;stroke:var(--encre);stroke-width:1.7;stroke-linejoin:round}
+.leger path{fill:none;stroke:var(--acier);stroke-width:.9}
+.gammes{display:grid;grid-template-columns:repeat(3,1fr);margin:28px 0 0;border:1px solid var(--encre)}
+.gammes figure{margin:0;padding:14px 18px 16px;border-left:1px solid var(--encre)}
+.gammes figure:first-child{border-left:0}
+.gammes svg{display:block;width:100%;height:auto}
+.gammes .cotes text{font-size:10px}
+.gammes figcaption{margin-top:8px;font-size:.95rem}
+.gammes figcaption b{display:block;font:600 1.1rem/1.25 var(--din)}
+.gammes figcaption span{color:var(--acier)}
+.note{color:var(--acier);font-size:13.5px;margin:8px 0 0}
+.nomenclature a,.formation a{color:inherit;text-underline-offset:3px}
 .vu .coupe{fill:url(#hach)}
 .axes line,.axes circle{fill:none;stroke:var(--acier);stroke-width:.8;stroke-dasharray:14 3 2 3}
 .fin{stroke:#c9952e;stroke-width:.9} /* hachures a la couleur du logo CM3V */
@@ -119,6 +130,10 @@ h3{font:600 1.22rem/1.2 var(--din);margin:0 0 8px}
   .savoir>div{padding:14px 0;border-left:0;border-top:1px solid var(--trait)}
   .savoir>div:first-child{border-top:0;padding-top:0}
   .formation{grid-template-columns:1fr;gap:16px}
+  .gammes{grid-template-columns:1fr}
+  .gammes figure{border-left:0;border-top:1px solid var(--encre)}
+  .gammes figure:first-child{border-top:0}
+  .gammes svg{max-width:300px}
   .contact{grid-template-columns:1fr;gap:24px}
   .contact form{grid-template-columns:1fr}
   .cartouche{grid-template-columns:1fr}
