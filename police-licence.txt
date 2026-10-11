@@ -1,0 +1,4 @@
+Police du site : Space Grotesk (fichier space-grotesk-latin.woff2, sous-ensemble latin).
+Copyright The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk).
+Distribuee sous licence SIL Open Font License, version 1.1 : https://openfontlicense.org
+Fichier recupere le 11/10/2026 depuis Google Fonts et heberge sur ce site.

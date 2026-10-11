@@ -1,151 +1,139 @@
-/* Site de Simon Gautrault (CM3V). Une seule feuille de style, aucune dependance externe. */
+/* Site de Simon Gautrault (CM3V). Une seule feuille de style, police hebergee sur place. */
+@font-face{font-family:"Space Grotesk";src:url(space-grotesk-latin.woff2) format("woff2");font-weight:300 700;font-display:swap}
 :root{
-  --tole:#e9eceb;      /* fond : tole brossee */
-  --feuille:#f7f8f7;   /* la planche de dessin */
-  --encre:#17202b;     /* traits forts et texte */
-  --acier:#5b6975;     /* texte secondaire, traits fins */
-  --trait:#b9c2c7;     /* filets de separation */
-  --bleu:#1b3fa0;      /* bleu de tracage : cotes et actions */
-  --din:"Bahnschrift","DIN Alternate","Roboto Condensed","Arial Narrow",system-ui,sans-serif;
-  --texte:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --fond:#f1f2f4;
+  --blanc:#ffffff;
+  --encre:#13161b;
+  --acier:#586471;
+  --trait:#d3d8de;
+  --or:#f2b233;        /* l'or du logo CM3V, pousse en clair */
+  --nuit:#13161b;      /* fond de la vue 3D */
+  --ombre:5px 5px 0 var(--encre);
+  --police:"Space Grotesk","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--tole);color:var(--encre);font:17px/1.6 var(--texte)}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--bleu);outline-offset:3px}
+body{margin:0;background:var(--fond);color:var(--encre);font:17px/1.6 var(--police)}
+a{color:inherit;text-underline-offset:4px}
+img{max-width:100%}
+:focus-visible{outline:3px solid #2f6fed;outline-offset:3px}
+.cadre{max-width:1160px;margin:0 auto;padding-inline:24px}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.025em}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.05;margin-bottom:30px}
+h3{font-size:1.25rem;line-height:1.2}
 
-.preversion{margin:0;padding:6px 16px;background:var(--encre);color:var(--feuille);font-size:13.5px;text-align:center}
-.planche{max-width:1180px;margin:18px auto;background:var(--feuille);border:1.5px solid var(--encre)}
+.preversion{margin:0;padding:7px 16px;background:var(--encre);color:#fff;font-size:13.5px;text-align:center}
 
-.entete{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 28px;border-bottom:1px solid var(--trait)}
-.marque{display:flex;align-items:center;gap:14px;text-decoration:none}
-.marque img{display:block;height:56px;width:auto;mix-blend-mode:multiply}
-.marque strong{font:600 26px/1 var(--din);letter-spacing:.5px}
-.marque span{color:var(--acier);font-size:15px}
-.entete nav{display:flex;align-items:center;gap:22px;font-size:15.5px}
-.entete nav a{text-decoration:none}
-.entete nav a:hover{text-decoration:underline;text-underline-offset:4px}
-.bouton{display:inline-block;border:1.5px solid var(--encre);padding:7px 14px;background:transparent;color:var(--encre);text-decoration:none;font-weight:600}
-.entete nav a.bouton:hover,.bouton:hover{background:var(--encre);color:var(--feuille);text-decoration:none}
-.bouton.plein{background:var(--bleu);border-color:var(--bleu);color:#fff;padding:12px 20px}
-.bouton.plein:hover{background:var(--encre);border-color:var(--encre)}
+/* Boutons : ombre dure qui s'ecrase au survol */
+.bouton{display:inline-block;padding:12px 22px;border:2px solid var(--encre);border-radius:999px;background:var(--or);color:var(--encre);font:inherit;font-weight:700;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--encre);transition:transform .12s,box-shadow .12s}
+.bouton:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--encre)}
+.bouton:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--encre)}
+.bouton.clair{background:var(--blanc)}
+.bouton.petit{padding:8px 16px;box-shadow:3px 3px 0 var(--encre)}
 
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:56px 28px 48px}
-h1{font:600 clamp(2.3rem,4.6vw,3.9rem)/1.04 var(--din);font-stretch:85%;letter-spacing:-.3px;margin:0 0 22px;text-wrap:balance}
-.chapo{font-size:1.12rem;max-width:34em;margin:0 0 28px}
-.presentation{display:grid;grid-template-columns:112px 1fr;gap:20px;align-items:start;margin:0 0 28px}
-.presentation img{display:block;width:112px;height:112px;border:1.5px solid var(--encre)}
-.presentation .chapo{margin:0}
-.actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin:0}
-.lien{text-underline-offset:4px}
-.dessin{margin:0}
-.dessin svg{display:block;width:100%;height:auto}
-.dessin figcaption{color:var(--acier);font-size:13.5px;margin-top:6px}
+.entete{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px}
+.marque{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:600}
+.marque img{display:block;height:54px;width:auto;mix-blend-mode:multiply}
+.entete nav{display:flex;align-items:center;gap:26px;font-weight:500}
+.entete nav a:not(.bouton){text-decoration:none}
+.entete nav a:not(.bouton):hover{text-decoration:underline}
 
-/* Le dessin : traits vus, axes, hachures, cotes */
-.vu circle,.vu path{fill:none;stroke:var(--encre);stroke-width:1.7;stroke-linejoin:round}
-.leger path{fill:none;stroke:var(--acier);stroke-width:.9}
-.gammes{display:grid;grid-template-columns:repeat(3,1fr);margin:28px 0 0;border:1px solid var(--encre)}
-.gammes figure{margin:0;padding:14px 18px 16px;border-left:1px solid var(--encre)}
-.gammes figure:first-child{border-left:0}
-.gammes svg{display:block;width:100%;height:auto}
-.gammes .cotes text{font-size:10px}
-.gammes figcaption{margin-top:8px;font-size:.95rem}
-.gammes figcaption b{display:block;font:600 1.1rem/1.25 var(--din)}
-.gammes figcaption span{color:var(--acier)}
-.note{color:var(--acier);font-size:13.5px;margin:8px 0 0}
-.nomenclature a,.formation a{color:inherit;text-underline-offset:3px}
-.vu .coupe{fill:url(#hach)}
-.axes line,.axes circle{fill:none;stroke:var(--acier);stroke-width:.8;stroke-dasharray:14 3 2 3}
-.fin{stroke:#c9952e;stroke-width:.9} /* hachures a la couleur du logo CM3V */
-.cotes line,.cotes path{fill:none;stroke:var(--bleu);stroke-width:.9}
-.cotes text{fill:var(--bleu);font:500 13px var(--din)}
-.pointe{fill:var(--bleu)}
-.trace{stroke-dasharray:1;stroke-dashoffset:1;animation:tracer 1.6s ease-out forwards}
-.vu .coupe{animation:tracer 1.6s ease-out forwards,remplir .6s 1.3s both}
-.axes{animation:apparaitre .5s .1s both}
-.cotes{animation:apparaitre .6s 1.5s both}
-@keyframes tracer{to{stroke-dashoffset:0}}
-@keyframes remplir{from{fill-opacity:0}to{fill-opacity:1}}
-@keyframes apparaitre{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .trace,.vu .coupe,.axes,.cotes{animation:none}
-  .trace{stroke-dasharray:none;stroke-dashoffset:0}
-}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-block:36px 64px}
+h1{font-size:clamp(2.6rem,5.4vw,4.5rem);line-height:.98;margin-bottom:22px;text-wrap:balance}
+.chapo{font-size:1.14rem;margin:0 0 24px;max-width:33em}
+.identite{display:flex;align-items:center;gap:14px;margin:0 0 26px}
+.identite img{width:68px;height:68px;border-radius:50%;border:2px solid var(--encre);box-shadow:3px 3px 0 var(--or)}
+.identite b{display:block;font-size:1.08rem;color:var(--encre)}
+.identite span{color:var(--acier);font-size:.95rem}
+.actions{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 26px}
+.puces{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.puces li{padding:5px 13px;border:1.5px solid var(--encre);border-radius:999px;background:var(--blanc);font-size:.9rem;font-weight:600}
 
-.bloc{padding:48px 28px;border-top:1px solid var(--trait)}
-h2{font:600 2rem/1.1 var(--din);font-stretch:88%;margin:0 0 26px}
-h3{font:600 1.22rem/1.2 var(--din);margin:0 0 8px}
-.savoir{display:grid;grid-template-columns:repeat(4,1fr)}
-.savoir>div{padding:0 22px;border-left:1px solid var(--trait)}
-.savoir>div:first-child{padding-left:0;border-left:0}
-.savoir p{margin:0;font-size:.98rem}
-.outils{margin:30px 0 0;padding-top:16px;border-top:1px solid var(--trait)}
+/* La vue 3D */
+.vue{margin:0;background:var(--nuit);border:2px solid var(--encre);border-radius:22px;box-shadow:9px 9px 0 var(--or);overflow:hidden;color:#e7ebf0}
+.vue-barre{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #2a3038}
+.vue-barre button{padding:6px 15px;border:1.5px solid #3b434e;border-radius:999px;background:transparent;color:#cdd4dc;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.vue-barre button:hover{border-color:var(--or);color:#fff}
+.vue-barre button[aria-pressed="true"]{background:var(--or);border-color:var(--or);color:var(--encre)}
+.vue canvas{display:block;width:100%;height:390px;cursor:grab;touch-action:pan-y;background-image:linear-gradient(#1c2129 1px,transparent 1px),linear-gradient(90deg,#1c2129 1px,transparent 1px);background-size:30px 30px;background-position:center}
+.vue figcaption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;padding:10px 14px;border-top:1px solid #2a3038;color:#909ba8;font-size:.82rem}
 
-.nomenclature{width:100%;border-collapse:collapse;font-size:.96rem}
-.nomenclature th,.nomenclature td{border:1px solid var(--encre);padding:9px 12px;text-align:left;vertical-align:top}
-.nomenclature th{font:600 .95rem/1.2 var(--din);background:var(--tole)}
-.nomenclature td:first-child{font:600 1.05rem/1.4 var(--din);text-align:center;width:3.4em}
-.nomenclature td:nth-child(2){white-space:nowrap}
-.nomenclature td span{display:block;color:var(--acier)}
-.formation{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px}
-.formation li{border-top:1.5px solid var(--encre);padding-top:10px}
-.formation b{display:block;font:600 1.15rem/1.2 var(--din)}
-.formation span{display:block;color:var(--acier);font-size:.95rem}
-.sous-titre{margin-top:40px}
+/* Bandeau defilant */
+.bandeau{overflow:hidden;white-space:nowrap;background:var(--encre);color:#fff;font-weight:600;font-size:1.08rem}
+.bandeau div{display:inline-block;padding:13px 0;animation:defiler 36s linear infinite}
+.bandeau span{display:inline-block;padding:0 22px}
+.bandeau i{display:inline-block;width:9px;height:9px;background:var(--or);transform:rotate(45deg);vertical-align:2px}
+@keyframes defiler{to{transform:translateX(-50%)}}
 
-.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
-.contact p{margin:0 0 14px;max-width:30em}
-.contact form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;align-content:start}
+.bloc{padding-block:68px}
+.carte{background:var(--blanc);border:2px solid var(--encre);border-radius:18px;padding:22px 24px;box-shadow:var(--ombre)}
+.carte p{margin:8px 0 0}
+.grille{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.chiffres{margin-bottom:20px}
+.chiffres .carte b{display:block;font-size:clamp(2.3rem,4vw,3.3rem);line-height:1;letter-spacing:-.04em}
+.chiffres .carte p{font-weight:500;line-height:1.35}
+.carte.or{background:var(--or)}
+.carte.nuit{background:var(--encre);color:#fff}
+
+.frise{display:grid;gap:16px}
+.etape{display:grid;grid-template-columns:190px 1fr;gap:10px 26px;align-items:start}
+.quand{margin:0;font-size:1.7rem;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+.quand span{display:block;font-size:.95rem;font-weight:500;letter-spacing:0;color:var(--acier)}
+.etape h3 a{text-decoration-thickness:2px}
+.etape .poste{margin:3px 0 0;font-weight:600}
+.etape .poste span{font-weight:400;color:var(--acier)}
+.etape.actuelle{background:var(--or)}
+.etape.actuelle .quand span,.etape.actuelle .poste span{color:var(--encre)}
+.formation{margin-top:44px}
+.formation h2{font-size:1.6rem;margin-bottom:18px}
+.formation .grille{grid-template-columns:repeat(3,1fr)}
+.formation .carte{box-shadow:none;padding:18px 20px}
+.formation .carte b{display:block;font-size:1.1rem}
+.formation .carte span{display:block;color:var(--acier);font-size:.95rem;margin-top:4px}
+
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start;padding:44px;background:var(--or);border:2px solid var(--encre);border-radius:26px;box-shadow:9px 9px 0 var(--encre)}
+.contact h2{margin-bottom:16px}
+.contact p{margin:0 0 14px;max-width:28em}
+.contact form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;padding:24px;background:var(--blanc);border:2px solid var(--encre);border-radius:18px}
 .contact label{display:block;font-weight:600;font-size:.95rem}
-.contact input,.contact textarea{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1.5px solid var(--encre);border-radius:0;background:#fff;color:inherit;font:inherit;font-weight:400}
+.contact input,.contact textarea{display:block;width:100%;margin-top:6px;padding:11px 13px;border:2px solid var(--encre);border-radius:12px;background:var(--blanc);color:inherit;font:inherit;font-weight:400}
 .contact .large{grid-column:1/-1}
-.contact button{font:inherit;font-weight:600;cursor:pointer;justify-self:start}
-.retour{grid-column:1/-1;margin:0;padding:10px 12px;border-left:4px solid var(--bleu);background:var(--tole)}
+.contact button{justify-self:start}
+.retour{grid-column:1/-1;margin:0;padding:11px 14px;border:2px solid var(--encre);border-radius:12px;background:var(--fond)}
 .retour[hidden]{display:none}
 
-.cartouche{display:grid;grid-template-columns:1.6fr 1fr 1fr auto;border-top:1.5px solid var(--encre)}
-.cartouche div{padding:10px 14px;border-right:1px solid var(--encre);border-bottom:1px solid var(--encre)}
-.cartouche .logo{grid-row:span 2;display:grid;place-items:center;padding:10px 22px;border-right:0}
-.cartouche .logo img{display:block;height:84px;width:auto;mix-blend-mode:multiply}
-.cartouche small{display:block;color:var(--acier);font-size:12.5px}
-.cartouche b{font:600 1.05rem/1.3 var(--din)}
-.cartouche .titre{grid-row:span 2}
-.cartouche .titre b{font-size:1.5rem}
-.pied{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding:10px 14px;font-size:13.5px;color:var(--acier)}
+.pied{margin-top:68px;padding:34px 0;background:var(--encre);color:#cdd4dc;font-size:.95rem}
+.pied .cadre{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.pied .logo{display:block;padding:8px 12px;background:var(--blanc);border-radius:12px}
+.pied .logo img{display:block;height:58px;width:auto}
+.pied p{margin:0}
+.pied nav{display:flex;gap:22px}
 
-.texte{max-width:46em}
-.texte h2{margin-top:34px;font-size:1.5rem;margin-bottom:10px}
-.texte .attente{border-left:4px solid var(--bleu);background:var(--tole);padding:10px 12px}
+/* Page de texte (mentions legales) */
+.texte{max-width:48em;margin:20px auto 0}
+.texte h1{font-size:clamp(2.1rem,4vw,3rem)}
+.texte h2{font-size:1.4rem;margin:30px 0 8px}
+.texte p{margin:0 0 12px}
+.texte .attente{padding:12px 16px;border:2px solid var(--encre);border-radius:12px;background:var(--or)}
 
-@media (max-width:860px){
-  .planche{margin:0;border-width:0 0 1.5px}
-  .entete{padding:12px 18px}
+@media (max-width:940px){
+  .hero{grid-template-columns:1fr;gap:34px;padding-block:22px 48px}
+  .grille{grid-template-columns:repeat(2,1fr)}
+  .contact{grid-template-columns:1fr;padding:28px}
   .entete nav a:not(.bouton){display:none}
-  .hero{grid-template-columns:1fr;padding:36px 18px 30px}
-  .bloc{padding:36px 18px}
-  .savoir{grid-template-columns:1fr}
-  .savoir>div{padding:14px 0;border-left:0;border-top:1px solid var(--trait)}
-  .savoir>div:first-child{border-top:0;padding-top:0}
-  .formation{grid-template-columns:1fr;gap:16px}
-  .gammes{grid-template-columns:1fr}
-  .gammes figure{border-left:0;border-top:1px solid var(--encre)}
-  .gammes figure:first-child{border-top:0}
-  .gammes svg{max-width:300px}
-  .contact{grid-template-columns:1fr;gap:24px}
-  .contact form{grid-template-columns:1fr}
-  .cartouche{grid-template-columns:1fr}
-  .cartouche div{border-right:0}
-  .cartouche .titre,.cartouche .logo{grid-row:auto}
-  .cartouche .logo{justify-items:start}
-  .marque img{height:46px}
-  .presentation{grid-template-columns:84px 1fr;gap:14px}
-  .presentation img{width:84px;height:84px}
-  .nomenclature thead{position:absolute;left:-9999px}
-  .nomenclature tr{display:block;border:1px solid var(--encre);margin-bottom:10px;padding:6px 0}
-  .nomenclature td{display:block;border:0;padding:3px 12px;width:auto}
-  .nomenclature td:first-child{display:none}
-  .nomenclature td:nth-child(2){font:600 1.1rem/1.4 var(--din)}
+}
+@media (max-width:620px){
+  .cadre{padding-inline:16px}
+  .bloc{padding-block:48px}
+  .grille,.formation .grille{grid-template-columns:1fr}
+  .etape{grid-template-columns:1fr}
+  .contact{padding:20px}
+  .contact form{grid-template-columns:1fr;padding:18px}
+  .vue canvas{height:300px}
+  .marque span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bandeau div{animation:none}
+  .bouton{transition:none}
 }
