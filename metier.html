@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le métier de dessinateur-projeteur : Simon Gautrault, CM3V</title>
+<meta name="description" content="Ce que fait un dessinateur-projeteur en bureau d'études mécanique, du cahier des charges à l'industrialisation, avec un calculateur d'ajustements ISO.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+.m-hero{padding-block:36px 40px;max-width:52em}
+.m-hero h1{font-size:clamp(2.3rem,4.8vw,3.9rem)}
+.m-bloc{padding-block:40px}
+.etapes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0 0 18px;padding:0;list-style:none}
+.etapes button{width:100%;height:100%;padding:12px 10px;border:2px solid var(--encre);border-radius:14px;background:var(--blanc);font:inherit;font-weight:700;font-size:.92rem;line-height:1.2;text-align:left;cursor:pointer;box-shadow:3px 3px 0 var(--encre);transition:transform .12s,box-shadow .12s}
+.etapes button span{display:block;font-size:.78rem;color:var(--acier);font-weight:600;margin-bottom:4px}
+.etapes button:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--encre)}
+.etapes button[aria-selected="true"]{background:var(--or)}
+.etapes button[aria-selected="true"] span{color:var(--encre)}
+.panneau{border:2px solid var(--encre);border-radius:22px;background:var(--blanc);box-shadow:7px 7px 0 var(--or);padding:26px 28px;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start}
+.panneau h3{font-size:1.5rem;margin-bottom:10px}
+.panneau p{margin:0 0 12px}
+.panneau ul{margin:0;padding-left:20px}
+.panneau .livrable{border-left:4px solid var(--or);padding:10px 14px;background:var(--fond);border-radius:0 12px 12px 0;font-size:.95rem}
+.panneau .livrable b{display:block;margin-bottom:4px}
+.calc{border:2px solid var(--encre);border-radius:22px;background:var(--nuit);color:#e7ebf0;box-shadow:9px 9px 0 var(--or);padding:24px 26px}
+.calc h3{color:#fff;margin-bottom:6px}
+.calc .aide{color:#9aa5b1;font-size:.92rem;margin:0 0 18px}
+.calc-champs{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:end;margin-bottom:20px}
+.calc label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:600;color:#cdd4dc}
+.calc input,.calc select{font:inherit;font-size:1.05rem;padding:9px 12px;border:1.5px solid #3b434e;border-radius:12px;background:#1c2129;color:#fff;min-width:150px}
+.calc input:focus,.calc select:focus{border-color:var(--or);outline:none}
+.calc-res{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.calc-res div{border:1.5px solid #2f3640;border-radius:14px;padding:12px 14px;background:#181c22}
+.calc-res b{display:block;font-size:1.25rem;color:#fff;font-variant-numeric:tabular-nums}
+.calc-res span{font-size:.78rem;color:#909ba8;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.calc-verdict{margin:16px 0 0;padding:12px 16px;border-radius:14px;background:var(--or);color:var(--encre);font-weight:700}
+.calc-schema{display:block;width:100%;height:150px;margin-top:16px}
+.calc .note{margin:14px 0 0;color:#909ba8;font-size:.8rem}
+.lexique{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.lexique div{border:2px solid var(--encre);border-radius:16px;background:var(--blanc);padding:16px 18px;box-shadow:3px 3px 0 var(--encre)}
+.lexique b{display:block;margin-bottom:4px}
+.lexique p{margin:0;font-size:.95rem;color:var(--acier)}
+.m-cta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border:2px solid var(--encre);border-radius:22px;background:var(--or);padding:24px 28px;box-shadow:7px 7px 0 var(--encre);margin-block:20px 60px}
+.m-cta p{margin:0;font-size:1.2rem;font-weight:700;max-width:30em}
+.m-cta .bouton{background:var(--blanc)}
+@media (max-width:900px){.etapes{grid-template-columns:repeat(3,1fr)}.panneau{grid-template-columns:1fr}.lexique{grid-template-columns:1fr 1fr}.calc-res{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.etapes{grid-template-columns:1fr 1fr}.lexique{grid-template-columns:1fr}.entete nav{gap:14px}}
+@media (prefers-reduced-motion:reduce){.etapes button{transition:none}}
+</style>
+</head>
+<body>
+<p class="preversion">Préversion du 11/10/2026 : site en cours de validation, non officiel.</p>
+
+<header class="cadre entete">
+  <a class="marque" href="index.html"><img src="logo-cm3v.jpg" alt="CM3V, Conception Mécanique des 3 Vallées" width="79" height="54"><span>Simon Gautrault</span></a>
+  <nav aria-label="Sections du site">
+    <a href="index.html#savoir-faire">Savoir-faire</a>
+    <a href="index.html#parcours">Parcours</a>
+    <a href="metier.html" aria-current="page"><b>Le métier</b></a>
+    <a class="bouton petit" href="index.html#contact">Écrire à Simon</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="cadre m-hero">
+  <h1>Dessinateur-projeteur : de l'idée à la pièce qu'on fabrique.</h1>
+  <p class="chapo">En bureau d'études mécanique, le dessinateur-projeteur transforme un besoin en une pièce ou une machine que l'atelier sait fabriquer, monter et contrôler. Voici comment se déroule une étude, étape par étape.</p>
+</section>
+
+<section class="cadre m-bloc" id="etude">
+  <h2>Les six étapes d'une étude</h2>
+  <ol class="etapes" role="tablist" aria-label="Étapes d'une étude" id="etapes"></ol>
+  <div class="panneau" role="tabpanel" id="panneau" aria-live="polite"></div>
+</section>
+
+<section class="cadre m-bloc" id="ajustements">
+  <h2>Le geste du métier : choisir un ajustement</h2>
+  <div class="calc">
+    <h3>Calculateur d'ajustements ISO</h3>
+    <p class="aide">Un arbre qui tourne dans un palier, une goupille serrée dans un moyeu : tout se joue en microns. Choisissez un diamètre et un ajustement, l'outil donne les tolérances de l'alésage et de l'arbre, et le jeu ou le serrage obtenu.</p>
+    <div class="calc-champs">
+      <label>Diamètre nominal (mm)<input type="number" id="c-d" min="1" max="120" step="0.5" value="25"></label>
+      <label>Ajustement<select id="c-aj">
+        <option value="H7/f7">H7/f7 : tournant</option>
+        <option value="H7/g6" selected>H7/g6 : glissant</option>
+        <option value="H7/h6">H7/h6 : glissant juste</option>
+        <option value="H7/p6">H7/p6 : serré</option>
+      </select></label>
+    </div>
+    <div class="calc-res">
+      <div><span>Alésage</span><b id="r-al">–</b></div>
+      <div><span>Arbre</span><b id="r-ar">–</b></div>
+      <div><span>Jeu ou serrage maxi</span><b id="r-max">–</b></div>
+      <div><span>Jeu ou serrage mini</span><b id="r-min">–</b></div>
+    </div>
+    <svg class="calc-schema" id="c-svg" viewBox="0 0 600 150" role="img" aria-label="Position des zones de tolérance de l'alésage et de l'arbre par rapport à la cote nominale"></svg>
+    <p class="calc-verdict" id="r-v" role="status">–</p>
+    <p class="note">Valeurs de la norme ISO 286-2 pour les diamètres de 1 à 120 mm. Outil d'illustration : pour un plan, se référer à la norme.</p>
+  </div>
+</section>
+
+<section class="cadre m-bloc" id="lexique">
+  <h2>Le vocabulaire du bureau d'études</h2>
+  <div class="lexique">
+    <div><b>CDCF</b><p>Cahier des charges fonctionnel : ce que le produit doit faire, dans quelles conditions, avec quels critères de réussite.</p></div>
+    <div><b>Mise en plan</b><p>Le dessin de définition tiré de la maquette 3D : vues, coupes, cotes et tolérances que l'atelier va lire.</p></div>
+    <div><b>Cotation GPS</b><p>Spécification géométrique des produits : tolérances de forme, d'orientation et de position, normalisées ISO.</p></div>
+    <div><b>Nomenclature</b><p>La liste de toutes les pièces d'un ensemble, avec leurs quantités, matières et références.</p></div>
+    <div><b>Ajustement</b><p>L'association d'un alésage et d'un arbre : avec jeu pour tourner ou glisser, avec serrage pour rester en place.</p></div>
+    <div><b>Industrialisation</b><p>Rendre une pièce fabricable en série, au bon coût : procédés, gammes, outillages, contrôle.</p></div>
+  </div>
+</section>
+
+<section class="cadre">
+  <div class="m-cta">
+    <p>Un projet de pièce ou de machine ? Simon le mène de l'étape 1 à l'étape 6.</p>
+    <a class="bouton" href="index.html#contact">Décrire votre besoin</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="pied">
+  <div class="cadre">
+    <span class="logo"><img src="logo-cm3v.jpg" alt="Logo CM3V" width="85" height="58"></span>
+    <p>CM3V, Conception Mécanique des 3 Vallées. Saint-Crespin-sur-Moine (49).<br>Site sans cookie ni mesure d'audience.</p>
+    <nav aria-label="Liens de pied de page"><a href="index.html">Accueil</a> &middot; <a href="mentions-legales.html">Mentions légales</a></nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Les six etapes d'une etude.
+  var E = [
+    { t: "Le besoin", d: "Comprendre ce que veut le client avant de dessiner quoi que ce soit : la fonction de la pièce, les efforts, l'environnement, les quantités, le budget et le délai.",
+      l: ["Échange avec le client et l'atelier", "Étude de la concurrence et de l'existant", "Rédaction du cahier des charges fonctionnel"], v: "Cahier des charges fonctionnel validé" },
+    { t: "Les solutions", d: "Chercher plusieurs principes, les esquisser et les comparer sur des critères écrits : coût, encombrement, fiabilité, facilité de fabrication et de maintenance.",
+      l: ["Croquis et schémas de principe", "Architecture de l'ensemble", "Choix argumenté entre les solutions"], v: "Solution retenue et architecture" },
+    { t: "La maquette 3D", d: "Modéliser chaque pièce et l'assemblage en CAO, sous SolidWorks, Inventor ou PTC Creo. La maquette sert à vérifier les encombrements, les interférences et les montages.",
+      l: ["Pièces paramétrées", "Assemblages et contraintes", "Contrôle des interférences et des cinématiques"], v: "Maquette numérique complète" },
+    { t: "Le dimensionnement", d: "Vérifier que ça tient : efforts, contraintes, déformations, fatigue, choix des roulements, des vis, des vérins hydrauliques. Le calcul confirme ou corrige la conception.",
+      l: ["Calculs de résistance des matériaux", "Choix des composants du commerce", "Note de calcul"], v: "Conception justifiée" },
+    { t: "La mise en plan", d: "Traduire la maquette en plans que l'atelier lit sans ambiguïté : vues, coupes, cotes fonctionnelles, tolérances, états de surface, matière et traitements.",
+      l: ["Plans de définition des pièces", "Plans d'ensemble et nomenclature", "Tolérances et ajustements (voir le calculateur plus bas)"], v: "Dossier de plans prêt à fabriquer" },
+    { t: "Prototype et série", d: "Suivre la fabrication du prototype, le tester, corriger, puis industrialiser : rendre la pièce fabricable en série au bon coût, avec l'atelier et les fournisseurs.",
+      l: ["Suivi du prototype et essais", "Modifications et mise à jour des plans", "Industrialisation et suivi de production"], v: "Produit fabriqué en série" }
+  ];
+  var ol = document.getElementById("etapes"), pan = document.getElementById("panneau");
+  function montrer(i) {
+    [].forEach.call(ol.querySelectorAll("button"), function (b, j) { b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; });
+    var e = E[i];
+    pan.innerHTML = "";
+    var g = document.createElement("div"), h = document.createElement("h3"), p = document.createElement("p"), ul = document.createElement("ul");
+    h.textContent = (i + 1) + ". " + e.t; p.textContent = e.d;
+    e.l.forEach(function (x) { var li = document.createElement("li"); li.textContent = x; ul.appendChild(li); });
+    g.append(h, p, ul);
+    var dr = document.createElement("div"); dr.className = "livrable";
+    var b = document.createElement("b"); b.textContent = "Ce qui sort de cette étape";
+    dr.append(b, document.createTextNode(e.v));
+    pan.append(g, dr);
+  }
+  E.forEach(function (e, i) {
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "panneau");
+    var s = document.createElement("span"); s.textContent = "Étape " + (i + 1);
+    b.append(s, document.createTextNode(e.t));
+    b.addEventListener("click", function () { montrer(i); });
+    b.addEventListener("keydown", function (ev) {
+      var k = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+      if (k) { ev.preventDefault(); var n = (i + k + E.length) % E.length; montrer(n); ol.querySelectorAll("button")[n].focus(); }
+    });
+    li.appendChild(b); ol.appendChild(li);
+  });
+  montrer(0);
+
+  // ISO 286-2 : bornes des paliers de diametre (mm), IT6, IT7 et ecarts fondamentaux (microns).
+  var P = [3, 6, 10, 18, 30, 50, 80, 120];
+  var IT6 = [6, 8, 9, 11, 13, 16, 19, 22];
+  var IT7 = [10, 12, 15, 18, 21, 25, 30, 35];
+  var ES_f = [-6, -10, -13, -16, -20, -25, -30, -36];
+  var ES_g = [-2, -4, -5, -6, -7, -9, -10, -12];
+  var EI_p = [6, 12, 15, 18, 22, 26, 32, 37];
+  var cd = document.getElementById("c-d"), ca = document.getElementById("c-aj");
+  function fmt(x) { return (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x); }
+  function calc() {
+    var d = parseFloat(String(cd.value).replace(",", "."));
+    var v = document.getElementById("r-v");
+    if (!(d > 0 && d <= 120)) { ["r-al", "r-ar", "r-max", "r-min"].forEach(function (id) { document.getElementById(id).textContent = "–"; }); v.textContent = "Diamètre entre 1 et 120 mm."; document.getElementById("c-svg").innerHTML = ""; return; }
+    var k = 0; while (d > P[k]) k++;
+    var EI = 0, ES = IT7[k], es, ei, aj = ca.value;
+    if (aj === "H7/f7") { es = ES_f[k]; ei = es - IT7[k]; }
+    else if (aj === "H7/g6") { es = ES_g[k]; ei = es - IT6[k]; }
+    else if (aj === "H7/h6") { es = 0; ei = -IT6[k]; }
+    else { ei = EI_p[k]; es = ei + IT6[k]; }
+    var jmax = ES - ei, jmin = EI - es;
+    document.getElementById("r-al").textContent = "Ø" + d + " " + fmt(ES) + "/" + fmt(EI) + " µm";
+    document.getElementById("r-ar").textContent = "Ø" + d + " " + fmt(es) + "/" + fmt(ei) + " µm";
+    function lib(j) { return j >= 0 ? "jeu " + j + " µm" : "serrage " + (-j) + " µm"; }
+    document.getElementById("r-max").textContent = lib(jmax);
+    document.getElementById("r-min").textContent = lib(jmin);
+    v.textContent = jmin > 0 ? "Toujours du jeu : l'arbre tourne ou glisse librement dans l'alésage."
+      : jmax < 0 ? "Toujours du serrage : l'arbre se monte à la presse ou par dilatation et ne bouge plus."
+      : jmin === 0 ? "Jeu nul au pire cas : l'arbre glisse juste, sans battement, monté à la main."
+      : "Ajustement incertain : selon les pièces, léger jeu ou léger serrage.";
+    // Schema des zones de tolerance, echelle commune.
+    var lo = Math.min(EI, ei), hi = Math.max(ES, es), pad = 8;
+    var y = function (u) { return 120 - (u - lo) / (hi - lo || 1) * 90; };
+    var s = '<line x1="20" x2="580" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#f2b233" stroke-width="2" stroke-dasharray="6 5"/>'
+      + '<text x="24" y="' + (y(0) - 6) + '" fill="#f2b233" font-size="12">cote nominale Ø' + d + '</text>'
+      + '<rect x="190" width="110" y="' + y(ES) + '" height="' + Math.max(2, y(EI) - y(ES)) + '" fill="#5aa9ff" opacity=".85" rx="4"/>'
+      + '<text x="245" y="144" fill="#cdd4dc" font-size="12" text-anchor="middle">alésage H7</text>'
+      + '<rect x="330" width="110" y="' + y(es) + '" height="' + Math.max(2, y(ei) - y(es)) + '" fill="#9be15d" opacity=".85" rx="4"/>'
+      + '<text x="385" y="144" fill="#cdd4dc" font-size="12" text-anchor="middle">arbre ' + aj.split("/")[1] + '</text>';
+    document.getElementById("c-svg").innerHTML = s;
+  }
+  cd.addEventListener("input", calc); ca.addEventListener("change", calc);
+  calc();
+})();
+</script>
+</body>
+</html>

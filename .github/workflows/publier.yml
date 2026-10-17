@@ -29,7 +29,7 @@ jobs:
       - name: Preparer le site
         run: |
           mkdir -p _site
-          cp index.html mentions-legales.html style.css vue3d.js favicon.svg robots.txt logo-cm3v.jpg simon-gautrault.jpg space-grotesk-latin.woff2 police-licence.txt _site/
+          cp index.html metier.html mentions-legales.html style.css vue3d.js favicon.svg robots.txt logo-cm3v.jpg simon-gautrault.jpg space-grotesk-latin.woff2 police-licence.txt _site/
       - name: Configurer Pages
         uses: actions/configure-pages@v5
       - name: Uploader le site
