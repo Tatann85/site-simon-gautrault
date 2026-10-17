@@ -94,8 +94,8 @@
     <div class="calc-res">
       <div><span>Alésage</span><b id="r-al">–</b></div>
       <div><span>Arbre</span><b id="r-ar">–</b></div>
-      <div><span>Jeu ou serrage maxi</span><b id="r-max">–</b></div>
-      <div><span>Jeu ou serrage mini</span><b id="r-min">–</b></div>
+      <div><span id="l-max">Jeu maxi</span><b id="r-max">–</b></div>
+      <div><span id="l-min">Jeu mini</span><b id="r-min">–</b></div>
     </div>
     <svg class="calc-schema" id="c-svg" viewBox="0 0 600 150" role="img" aria-label="Position des zones de tolérance de l'alésage et de l'arbre par rapport à la cote nominale"></svg>
     <p class="calc-verdict" id="r-v" role="status">–</p>
@@ -199,9 +199,14 @@
     var jmax = ES - ei, jmin = EI - es;
     document.getElementById("r-al").textContent = "Ø" + d + " " + fmt(ES) + "/" + fmt(EI) + " µm";
     document.getElementById("r-ar").textContent = "Ø" + d + " " + fmt(es) + "/" + fmt(ei) + " µm";
-    function lib(j) { return j >= 0 ? "jeu " + j + " µm" : "serrage " + (-j) + " µm"; }
-    document.getElementById("r-max").textContent = lib(jmax);
-    document.getElementById("r-min").textContent = lib(jmin);
+    // Jeu = alesage moins arbre. Positif : jeu ; negatif : serrage.
+    var L = jmin >= 0 ? ["Jeu maxi", jmax, "Jeu mini", jmin]
+      : jmax <= 0 ? ["Serrage maxi", -jmin, "Serrage mini", -jmax]
+      : ["Jeu maxi", jmax, "Serrage maxi", -jmin];
+    document.getElementById("l-max").textContent = L[0];
+    document.getElementById("r-max").textContent = L[1] + " µm";
+    document.getElementById("l-min").textContent = L[2];
+    document.getElementById("r-min").textContent = L[3] + " µm";
     v.textContent = jmin > 0 ? "Toujours du jeu : l'arbre tourne ou glisse librement dans l'alésage."
       : jmax < 0 ? "Toujours du serrage : l'arbre se monte à la presse ou par dilatation et ne bouge plus."
       : jmin === 0 ? "Jeu nul au pire cas : l'arbre glisse juste, sans battement, monté à la main."
